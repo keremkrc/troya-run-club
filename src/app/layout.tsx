@@ -42,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" className={`${inter.variable} ${oswald.variable}`}>
+    <html lang="tr" data-scroll-behavior="smooth" className={`${inter.variable} ${oswald.variable}`}>
       <body className="font-inter bg-cream text-navy-700 antialiased">
         <Navbar />
         <main>{children}</main>
@@ -51,3 +51,4 @@ export default function RootLayout({
     </html>
   );
 }
+

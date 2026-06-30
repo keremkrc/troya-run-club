@@ -1,28 +1,33 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { products } from "@/data/products";
 import { ShoppingBag, Check } from "lucide-react";
+import { useState, use } from "react";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{
+    slug: string;
+  }>;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
-  if (!product) return { title: "Ürün Bulunamadı" };
-  return { title: product.name, description: product.description };
-}
+export default function ProductPage({ params }: Props) {
+  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [added, setAdded] = useState(false);
+  
+  const resolvedParams = use(params);
+  const product = products.find((p) => p.slug === resolvedParams.slug);
 
-export async function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
-}
+  if (!product) {
+    notFound();
+  }
 
-export default async function ProductDetailPage({ params }: Props) {
-  const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
-  if (!product) notFound();
+  const handleAddToCart = () => {
+    if (!selectedSize && product.sizes) return;
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  };
 
   return (
     <>
@@ -36,20 +41,29 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
       </div>
 
-      <section className="bg-cream py-12 px-6">
+      <section className="bg-cream py-12 px-6 min-h-screen">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-          {/* Image */}
-          <div className="relative aspect-square bg-white border border-navy-700/10 overflow-hidden">
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-            {product.salePrice && (
-              <div className="absolute top-4 left-4 bg-bronze-500 text-white font-oswald font-bold text-sm tracking-[0.1em] uppercase px-3 py-1.5">
+          {/* Image / 3D Viewer */}
+          <div className="relative aspect-square bg-white border border-navy-700/10 overflow-hidden shadow-sm rounded-3xl">
+            {product.is3D && product.modelUrl ? (
+              <iframe 
+                src={product.modelUrl} 
+                className="w-full h-full border-0"
+                title={product.name}
+                allow="camera; microphone; xr-spatial-tracking"
+              />
+            ) : (
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className="object-contain p-8"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority={true}
+              />
+            )}
+            {product.salePrice && !product.is3D && (
+              <div className="absolute top-4 left-4 bg-bronze-500 text-white font-oswald font-bold text-sm tracking-[0.1em] uppercase px-3 py-1.5 rounded-full shadow-lg">
                 İNDİRİM
               </div>
             )}
@@ -81,8 +95,12 @@ export default async function ProductDetailPage({ params }: Props) {
                   <button
                     key={size}
                     type="button"
-                    id={`size-${size}`}
-                    className="w-12 h-12 border border-navy-700/20 text-navy-700 font-oswald font-semibold text-sm hover:border-bronze-500 hover:bg-bronze-500 hover:text-white transition-colors"
+                    onClick={() => setSelectedSize(size)}
+                    className={`w-12 h-12 border font-oswald font-semibold text-sm transition-colors ${
+                      selectedSize === size
+                        ? "border-bronze-500 bg-bronze-500 text-white"
+                        : "border-navy-700/20 text-navy-700 hover:border-bronze-500 hover:text-bronze-500"
+                    }`}
                   >
                     {size}
                   </button>
@@ -92,11 +110,25 @@ export default async function ProductDetailPage({ params }: Props) {
 
             <button
               type="button"
-              id="add-to-cart"
-              className="w-full flex items-center justify-center gap-3 bg-bronze-500 text-white font-oswald font-bold text-sm tracking-[0.25em] uppercase py-4 hover:bg-navy-700 transition-colors mb-4"
+              onClick={handleAddToCart}
+              disabled={added}
+              className={`w-full flex items-center justify-center gap-3 font-oswald font-bold text-sm tracking-[0.25em] uppercase py-4 transition-all duration-300 mb-4 ${
+                added 
+                  ? "bg-green-500 text-white" 
+                  : "bg-bronze-500 text-white hover:bg-navy-700"
+              }`}
             >
-              <ShoppingBag size={18} />
-              SATIN AL
+              {added ? (
+                <>
+                  <Check size={18} />
+                  SEPETE EKLENDİ
+                </>
+              ) : (
+                <>
+                  <ShoppingBag size={18} />
+                  SATIN AL
+                </>
+              )}
             </button>
 
             <div className="flex flex-col gap-2 mt-6">

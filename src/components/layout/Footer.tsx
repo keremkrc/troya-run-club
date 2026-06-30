@@ -53,15 +53,15 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2 text-white/50 text-sm">
               <Mail size={14} className="text-bronze-400 shrink-0" />
-              <a href="mailto:info@troyarunclub.com" className="hover:text-bronze-300 transition-colors">
-                info@troyarunclub.com
+              <a href="mailto:hello@troyarunclub.com" className="hover:text-white transition-colors">
+                hello@troyarunclub.com
               </a>
             </div>
           </div>
 
-          {/* Kulüp */}
+          {/* Nav */}
           <div>
-            <p className="text-bronze-400 text-[10px] tracking-[0.35em] uppercase font-semibold mb-5">KULÜP</p>
+            <p className="text-bronze-400 text-[10px] tracking-[0.35em] uppercase font-semibold mb-5">TROYA RUN</p>
             <ul className="space-y-3">
               {footerLinks.kulüp.map((link) => (
                 <li key={link.href}>
@@ -73,7 +73,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Kaynaklar */}
+          {/* Resources */}
           <div>
             <p className="text-bronze-400 text-[10px] tracking-[0.35em] uppercase font-semibold mb-5">KAYNAKLAR</p>
             <ul className="space-y-3">
@@ -87,7 +87,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Bağlantı & Yasal */}
+          {/* Social & Legal */}
           <div>
             <p className="text-bronze-400 text-[10px] tracking-[0.35em] uppercase font-semibold mb-5">BAĞLANTI</p>
             <ul className="space-y-3 mb-8">

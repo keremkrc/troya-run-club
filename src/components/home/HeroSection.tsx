@@ -70,11 +70,6 @@ export default function HeroSection() {
           </Link>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 text-[10px] tracking-[0.4em] uppercase" aria-hidden="true">
-          <span className="animate-bounce">↓</span>
-          <span>Kaydır</span>
-        </div>
       </div>
     </section>
   );

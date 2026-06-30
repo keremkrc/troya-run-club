@@ -22,6 +22,8 @@ export interface Product {
   category: string;
   description: string;
   sizes: string[];
+  is3D?: boolean;
+  modelUrl?: string;
 }
 
 export interface LeaderboardEntry {

@@ -2,14 +2,16 @@ import { Product } from "@/types";
 
 export const products: Product[] = [
   {
-    slug: "troya-run-club-tshirt",
-    name: "TROYA / TSHIRT",
-    price: 1199,
-    salePrice: 899,
-    image: "/product-tshirt.jpg",
+    slug: "troya-run-club-custom-tshirt",
+    name: "TROYA / KİŞİYE ÖZEL T-SHIRT (3D)",
+    price: 1499,
+    salePrice: 1199,
+    image: "/product-custom-cover.jpg",
     category: "Üst Giyim",
-    description: "Hızlı kuruyan performans teknolojisi ile Çanakkale'nin enerjisini taşıyan özel tasarım koşu tişörtü. Unisex kesim, %88 Polyester %12 Elastane.",
+    description: "Kişiye özel tasarım kısa kollu sıfır yaka t-shirt (100V1). Kendi 3 boyutlu tasarımınızı inceleyin.",
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    is3D: true,
+    modelUrl: "https://tasarim.jrsw.com/studyo/avONmY9G",
   },
   {
     slug: "troya-run-club-hoodie",

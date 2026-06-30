@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/hakkimizda", label: "Hakkımızda" },
@@ -18,6 +19,7 @@ const navLinks = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -72,11 +74,6 @@ export default function Navbar() {
               </Link>
             )
           )}
-          <div className="flex items-center gap-1 ml-2">
-            <button type="button" className="text-[11px] font-bold tracking-[0.15em] uppercase text-white px-1" aria-label="Türkçe">TR</button>
-            <span className="text-white/30">|</span>
-            <button type="button" className="text-[11px] font-bold tracking-[0.15em] uppercase text-white/40 hover:text-white/70 px-1 transition-colors" aria-label="English">EN</button>
-          </div>
         </div>
 
         {/* Mobile Menu Button */}

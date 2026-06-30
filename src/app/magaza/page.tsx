@@ -33,12 +33,12 @@ export default function MagazaPage() {
                 id={`product-${product.slug}`}
                 className="group bg-white border border-navy-700/10 hover:border-bronze-400 hover:shadow-lg transition-all"
               >
-                <div className="relative aspect-square bg-navy-50 overflow-hidden">
+                <div className="relative aspect-square bg-white overflow-hidden">
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-contain group-hover:scale-105 transition-transform duration-500 p-2"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   {product.salePrice && (
