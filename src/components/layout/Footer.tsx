@@ -25,13 +25,13 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy-700 text-white pt-16 pb-8 px-6">
+    <footer className="bg-dark text-white pt-16 pb-8 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-14">
           {/* Brand */}
           <div className="col-span-2 md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-bronze-500 shrink-0">
+              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-bronze-400 shrink-0">
                 <Image
                   src="/logo.jpg"
                   alt="Troya Run Club Logo"
@@ -44,14 +44,14 @@ export default function Footer() {
                 Troya Run Club
               </p>
             </div>
-            <p className="text-white/60 text-sm leading-relaxed mb-5 max-w-xs">
+            <p className="text-muted text-sm leading-relaxed mb-5 max-w-xs">
               Çanakkale&apos;de kurulan bir koşucu topluluğu. Her tempo, her mesafe, herkesin hareketi.
             </p>
-            <div className="flex items-center gap-2 text-white/50 text-sm mb-2">
+            <div className="flex items-center gap-2 text-muted text-sm mb-2">
               <MapPin size={14} className="text-bronze-400 shrink-0" />
               <span>Çanakkale, Türkiye</span>
             </div>
-            <div className="flex items-center gap-2 text-white/50 text-sm">
+            <div className="flex items-center gap-2 text-muted text-sm">
               <Mail size={14} className="text-bronze-400 shrink-0" />
               <a href="mailto:hello@troyarunclub.com" className="hover:text-white transition-colors">
                 hello@troyarunclub.com
@@ -65,7 +65,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.kulüp.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-white/60 text-sm hover:text-bronze-300 transition-colors tracking-wide">
+                  <Link href={link.href} className="text-muted text-sm hover:text-bronze-400 transition-colors tracking-wide">
                     {link.label}
                   </Link>
                 </li>
@@ -79,7 +79,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.kaynaklar.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-white/60 text-sm hover:text-bronze-300 transition-colors tracking-wide">
+                  <Link href={link.href} className="text-muted text-sm hover:text-bronze-400 transition-colors tracking-wide">
                     {link.label}
                   </Link>
                 </li>
@@ -96,7 +96,7 @@ export default function Footer() {
                   href="https://instagram.com/troyarunclub"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white/60 text-sm hover:text-bronze-300 transition-colors"
+                  className="flex items-center gap-2 text-muted text-sm hover:text-bronze-400 transition-colors"
                 >
                   <svg
                     className="w-3.5 h-3.5 text-bronze-400"
@@ -119,7 +119,7 @@ export default function Footer() {
                   href="https://strava.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/60 text-sm hover:text-bronze-300 transition-colors"
+                  className="text-muted text-sm hover:text-bronze-400 transition-colors"
                 >
                   Strava
                 </a>
@@ -130,7 +130,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.yasal.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-white/60 text-sm hover:text-bronze-300 transition-colors tracking-wide">
+                  <Link href={link.href} className="text-muted text-sm hover:text-bronze-400 transition-colors tracking-wide">
                     {link.label}
                   </Link>
                 </li>
@@ -139,9 +139,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-xs tracking-widest uppercase">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-muted text-xs tracking-widest uppercase">
           <p>© {year} Troya Run Club. Tüm hakları saklıdır.</p>
-          <p className="text-bronze-500/60">Koş · Fethet · Birlikte Ol</p>
+          <p className="text-bronze-400/60">Koş · Fethet · Birlikte Ol</p>
         </div>
       </div>
     </footer>

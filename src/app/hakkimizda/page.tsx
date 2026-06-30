@@ -37,7 +37,7 @@ export default function HakkimizdaPage() {
   return (
     <>
       {/* Page Header */}
-      <div className="bg-navy-700 pt-32 pb-16 px-6 relative overflow-hidden">
+      <div className="bg-dark pt-32 pb-16 px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" aria-hidden="true">
           {[10, 30, 50, 70, 90].map((l) => (
             <div key={l} className="absolute top-0 bottom-0 w-px bg-bronze-400" style={{ left: `${l}%` }} />
@@ -52,16 +52,16 @@ export default function HakkimizdaPage() {
       </div>
 
       {/* Story */}
-      <section className="bg-cream py-20 px-6">
+      <section className="bg-mid py-20 px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-bronze-600 text-xs tracking-[0.5em] uppercase mb-4 font-semibold">HİKAYEMİZ</p>
-            <h2 className="font-oswald font-bold text-4xl md:text-5xl uppercase tracking-tight text-navy-700 mb-6">
+            <p className="text-bronze-400 text-xs tracking-[0.5em] uppercase mb-4 font-semibold">HİKAYEMİZ</p>
+            <h2 className="font-oswald font-bold text-4xl md:text-5xl uppercase tracking-tight text-cream mb-6">
               KÜÇÜK BAŞLADIK,
               <br />
-              <span className="text-bronze-500">BÜYÜK HAYALLER KURDUK.</span>
+              <span className="text-bronze-400">BÜYÜK HAYALLER KURDUK.</span>
             </h2>
-            <div className="space-y-4 text-navy-700/70 leading-relaxed">
+            <div className="space-y-4 text-muted leading-relaxed">
               <p>
                 2023 yılında birkaç arkadaşın Çanakkale sahil yolundaki sabah koşusuyla başlayan bu yolculuk, bugün 350&apos;yi aşkın üyesiyle büyüyen bir topluluğa dönüştü.
               </p>
@@ -81,17 +81,17 @@ export default function HakkimizdaPage() {
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-700/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent" />
           </div>
         </div>
       </section>
 
       {/* Values */}
-      <section className="bg-white py-20 px-6">
+      <section className="bg-stone py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-bronze-600 text-xs tracking-[0.5em] uppercase mb-3 font-semibold">DEĞERLERİMİZ</p>
-            <h2 className="font-oswald font-bold text-4xl md:text-5xl uppercase tracking-tight text-navy-700">
+            <p className="text-bronze-400 text-xs tracking-[0.5em] uppercase mb-3 font-semibold">DEĞERLERİMİZ</p>
+            <h2 className="font-oswald font-bold text-4xl md:text-5xl uppercase tracking-tight text-cream">
               NEDEN TROYA?
             </h2>
           </div>
@@ -99,12 +99,12 @@ export default function HakkimizdaPage() {
             {values.map((val) => {
               const Icon = val.icon;
               return (
-                <div key={val.title} className="p-8 border border-navy-700/10 hover:border-bronze-400 hover:shadow-lg transition-all group">
+                <div key={val.title} className="p-8 border border-white/10 hover:border-bronze-400 hover:shadow-lg transition-all group">
                   <div className="w-12 h-12 rounded-full bg-bronze-500/10 flex items-center justify-center mb-5 group-hover:bg-bronze-500/20 transition-colors">
-                    <Icon size={22} className="text-bronze-500" />
+                    <Icon size={22} className="text-bronze-400" />
                   </div>
-                  <h3 className="font-oswald font-bold text-2xl uppercase text-navy-700 mb-3">{val.title}</h3>
-                  <p className="text-navy-700/60 text-sm leading-relaxed">{val.desc}</p>
+                  <h3 className="font-oswald font-bold text-2xl uppercase text-cream mb-3">{val.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed">{val.desc}</p>
                 </div>
               );
             })}
@@ -113,22 +113,22 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* Team */}
-      <section className="bg-cream py-20 px-6">
+      <section className="bg-mid py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-bronze-600 text-xs tracking-[0.5em] uppercase mb-3 font-semibold">EKİBİMİZ</p>
-            <h2 className="font-oswald font-bold text-4xl md:text-5xl uppercase tracking-tight text-navy-700">
+            <p className="text-bronze-400 text-xs tracking-[0.5em] uppercase mb-3 font-semibold">EKİBİMİZ</p>
+            <h2 className="font-oswald font-bold text-4xl md:text-5xl uppercase tracking-tight text-cream">
               KURUCULAR & LİDERLER
             </h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {team.map((member) => (
               <div key={member.name} className="text-center group">
-                <div className="w-24 h-24 rounded-full bg-navy-700 flex items-center justify-center mx-auto mb-4 text-white font-oswald font-bold text-xl group-hover:bg-bronze-500 transition-colors">
+                <div className="w-24 h-24 rounded-full bg-dark flex items-center justify-center mx-auto mb-4 text-white font-oswald font-bold text-xl group-hover:bg-bronze-600 transition-colors">
                   {member.avatar}
                 </div>
-                <h3 className="font-oswald font-bold text-lg text-navy-700">{member.name}</h3>
-                <p className="text-bronze-600 text-xs tracking-[0.15em] uppercase mt-1">{member.role}</p>
+                <h3 className="font-oswald font-bold text-lg text-cream">{member.name}</h3>
+                <p className="text-bronze-400 text-xs tracking-[0.15em] uppercase mt-1">{member.role}</p>
               </div>
             ))}
           </div>

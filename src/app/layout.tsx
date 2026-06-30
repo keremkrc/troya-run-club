@@ -43,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" data-scroll-behavior="smooth" className={`${inter.variable} ${oswald.variable}`}>
-      <body className="font-inter bg-cream text-navy-700 antialiased">
+      <body className="font-inter bg-dark text-cream antialiased">
         <Navbar />
         <main>{children}</main>
         <Footer />

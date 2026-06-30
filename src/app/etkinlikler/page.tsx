@@ -17,7 +17,7 @@ function formatDate(dateStr: string) {
 }
 
 const typeBadge: Record<string, { label: string; className: string }> = {
-  haftalık: { label: "HAFTALIK", className: "bg-navy-700 text-bronze-300" },
+  haftalık: { label: "HAFTALIK", className: "bg-dark text-bronze-400" },
   özel: { label: "ÖZEL", className: "bg-bronze-500 text-white" },
   yarış: { label: "YARIŞ", className: "bg-amber-500 text-navy-900" },
 };
@@ -27,11 +27,11 @@ function EventCard({ event }: { event: Event }) {
   const isFull = event.participants >= event.maxParticipants;
 
   return (
-    <div className="bg-white border border-navy-700/10 p-6 hover:border-bronze-400 hover:shadow-md transition-all group">
+    <div className="bg-stone border border-white/10 p-6 hover:border-bronze-400 hover:shadow-md transition-all group">
       <div className="flex items-start justify-between mb-4 gap-4">
         <div>
           <div className="flex items-center gap-2 flex-wrap mb-1">
-            <h3 className="font-oswald font-bold text-xl uppercase tracking-tight text-navy-700 group-hover:text-bronze-600 transition-colors">
+            <h3 className="font-oswald font-bold text-xl uppercase tracking-tight text-cream group-hover:text-bronze-400 transition-colors">
               {event.title}
             </h3>
             {badge && (
@@ -40,18 +40,18 @@ function EventCard({ event }: { event: Event }) {
               </span>
             )}
           </div>
-          <p className="text-bronze-600 text-xs font-semibold tracking-[0.1em]">{formatDate(event.date)}</p>
+          <p className="text-bronze-400 text-xs font-semibold tracking-[0.1em]">{formatDate(event.date)}</p>
         </div>
         {event.isPast && (
-          <span className="text-[9px] font-bold tracking-[0.2em] uppercase px-2 py-0.5 bg-navy-700/10 text-navy-700/50 shrink-0">
+          <span className="text-[9px] font-bold tracking-[0.2em] uppercase px-2 py-0.5 bg-white/10 text-muted shrink-0">
             GEÇMİŞ
           </span>
         )}
       </div>
 
-      <p className="text-navy-700/60 text-sm leading-relaxed mb-5">{event.description}</p>
+      <p className="text-muted text-sm leading-relaxed mb-5">{event.description}</p>
 
-      <div className="flex flex-wrap items-center gap-4 text-sm text-navy-700/60 mb-5">
+      <div className="flex flex-wrap items-center gap-4 text-sm text-muted mb-5">
         <span className="flex items-center gap-1.5">
           <MapPin size={13} className="text-bronze-400" />
           {event.location}
@@ -71,7 +71,7 @@ function EventCard({ event }: { event: Event }) {
           type="button"
           disabled={isFull}
           id={`event-card-join-${event.id}`}
-          className="font-oswald font-semibold text-xs tracking-[0.25em] uppercase px-6 py-2.5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-bronze-500 text-white hover:bg-navy-700 w-full"
+          className="font-oswald font-semibold text-xs tracking-[0.25em] uppercase px-6 py-2.5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-bronze-500 text-white hover:bg-bronze-600 w-full"
         >
           {isFull ? "KAPASİTE DOLU" : "ETKİNLİĞE KATIL"}
         </button>
@@ -91,7 +91,7 @@ export default function EtkinliklerPage() {
 
   return (
     <>
-      <div className="bg-navy-700 pt-32 pb-16 px-6 relative overflow-hidden">
+      <div className="bg-dark pt-32 pb-16 px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" aria-hidden="true">
           {[10, 30, 50, 70, 90].map((l) => (
             <div key={l} className="absolute top-0 bottom-0 w-px bg-bronze-400" style={{ left: `${l}%` }} />
@@ -105,11 +105,11 @@ export default function EtkinliklerPage() {
         </div>
       </div>
 
-      <section className="bg-cream py-16 px-6">
+      <section className="bg-mid py-16 px-6">
         <div className="max-w-7xl mx-auto">
           {/* Filters */}
           <div className="flex items-center gap-3 mb-10">
-            <Filter size={16} className="text-bronze-500" />
+            <Filter size={16} className="text-bronze-400" />
             {(["yaklaşan", "geçmiş", "hepsi"] as Filter[]).map((f) => (
               <button
                 key={f}
@@ -119,7 +119,7 @@ export default function EtkinliklerPage() {
                 className={`font-oswald font-semibold text-xs tracking-[0.2em] uppercase px-4 py-2 transition-colors ${
                   filter === f
                     ? "bg-bronze-500 text-white"
-                    : "bg-white text-navy-700 border border-navy-700/10 hover:border-bronze-400"
+                    : "bg-stone text-cream border border-white/10 hover:border-bronze-400"
                 }`}
               >
                 {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -132,7 +132,7 @@ export default function EtkinliklerPage() {
               <EventCard key={event.id} event={event} />
             ))}
             {filtered.length === 0 && (
-              <p className="text-navy-700/50 text-sm col-span-2 py-12 text-center">
+              <p className="text-muted text-sm col-span-2 py-12 text-center">
                 Bu filtrede etkinlik bulunamadı.
               </p>
             )}

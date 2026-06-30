@@ -13,11 +13,11 @@ export default function ShopShowcase() {
   const next = () => setCurrent((c) => (c + 1) % products.length);
 
   return (
-    <section id="magaza" className="bg-cream py-20 px-6 overflow-hidden">
+    <section id="magaza" className="bg-mid py-20 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 text-center">
-          <p className="text-navy-700/50 text-xs tracking-[0.5em] uppercase mb-3 font-semibold">MAĞAZA</p>
-          <h2 className="font-oswald font-bold text-4xl md:text-5xl uppercase tracking-tight text-navy-700">
+          <p className="text-muted text-xs tracking-[0.5em] uppercase mb-3 font-semibold">MAĞAZA</p>
+          <h2 className="font-oswald font-bold text-4xl md:text-5xl uppercase tracking-tight text-cream">
             TROYA KOLEKSİYONU
           </h2>
         </div>
@@ -63,8 +63,8 @@ export default function ShopShowcase() {
                 aria-label={product.name}
                 aria-current={isCenter}
               >
-                <div className="h-full flex flex-col bg-white border border-navy-700/10 shadow-lg">
-                  <div className="relative flex-1 bg-navy-50 overflow-hidden">
+                <div className="h-full flex flex-col bg-stone border border-white/10 shadow-lg">
+                  <div className="relative flex-1 bg-stone overflow-hidden">
                     <Image
                       src={product.image}
                       alt={product.name}
@@ -75,22 +75,22 @@ export default function ShopShowcase() {
                     />
                   </div>
                   <div className="p-6 flex flex-col gap-3 items-center text-center">
-                    <h3 className="font-oswald font-bold text-lg uppercase tracking-tight text-navy-700">
+                    <h3 className="font-oswald font-bold text-lg uppercase tracking-tight text-cream">
                       {product.name}
                     </h3>
                     <div className="flex items-baseline gap-3">
-                      <span className="font-oswald font-bold text-2xl text-navy-700">
+                      <span className="font-oswald font-bold text-2xl text-cream">
                         {product.salePrice ?? product.price} ₺
                       </span>
                       {product.salePrice && (
-                        <span className="text-sm text-navy-700/40 line-through">{product.price} ₺</span>
+                        <span className="text-sm text-muted line-through">{product.price} ₺</span>
                       )}
                     </div>
                     {isCenter && (
                       <Link
                         href={`/magaza/${product.slug}`}
                         id={`shop-btn-${product.slug}`}
-                        className="mt-1 bg-bronze-500 text-white font-oswald font-semibold text-xs tracking-[0.25em] uppercase px-8 py-3 hover:bg-navy-700 transition-colors"
+                        className="mt-1 bg-bronze-500 text-white font-oswald font-semibold text-xs tracking-[0.25em] uppercase px-8 py-3 hover:bg-bronze-600 transition-colors"
                         onClick={(e) => e.stopPropagation()}
                       >
                         SATIN AL
@@ -107,7 +107,7 @@ export default function ShopShowcase() {
             type="button"
             onClick={prev}
             aria-label="Önceki ürün"
-            className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center bg-white border border-navy-700/10 text-navy-700 hover:bg-bronze-500 hover:text-white hover:border-bronze-500 transition-colors shadow-md"
+            className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center bg-stone border border-white/10 text-cream hover:bg-bronze-500 hover:text-white hover:border-bronze-500 transition-colors shadow-md"
           >
             <ChevronLeft size={20} />
           </button>
@@ -115,7 +115,7 @@ export default function ShopShowcase() {
             type="button"
             onClick={next}
             aria-label="Sonraki ürün"
-            className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center bg-white border border-navy-700/10 text-navy-700 hover:bg-bronze-500 hover:text-white hover:border-bronze-500 transition-colors shadow-md"
+            className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center bg-stone border border-white/10 text-cream hover:bg-bronze-500 hover:text-white hover:border-bronze-500 transition-colors shadow-md"
           >
             <ChevronRight size={20} />
           </button>
@@ -130,7 +130,7 @@ export default function ShopShowcase() {
               onClick={() => setCurrent(idx)}
               aria-label={`${p.name} ürününe git`}
               className={`h-1.5 transition-all rounded-full ${
-                idx === current ? "w-8 bg-bronze-500" : "w-4 bg-navy-700/20 hover:bg-navy-700/40"
+                idx === current ? "w-8 bg-bronze-500" : "w-4 bg-white/20 hover:bg-white/40"
               }`}
             />
           ))}
@@ -140,7 +140,7 @@ export default function ShopShowcase() {
           <Link
             href="/magaza"
             id="shop-all-products"
-            className="font-oswald font-semibold text-sm tracking-[0.25em] uppercase text-bronze-500 hover:text-bronze-600 transition-colors"
+            className="font-oswald font-semibold text-sm tracking-[0.25em] uppercase text-bronze-400 hover:text-bronze-600 transition-colors"
           >
             TÜM ÜRÜNLERİ GÖR →
           </Link>

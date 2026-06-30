@@ -17,7 +17,7 @@ export default function GaleriPage() {
 
   return (
     <>
-      <div className="bg-navy-700 pt-32 pb-16 px-6 relative overflow-hidden">
+      <div className="bg-dark pt-32 pb-16 px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" aria-hidden="true">
           {[10, 30, 50, 70, 90].map((l) => (
             <div key={l} className="absolute top-0 bottom-0 w-px bg-bronze-400" style={{ left: `${l}%` }} />
@@ -31,7 +31,7 @@ export default function GaleriPage() {
         </div>
       </div>
 
-      <section className="bg-cream py-16 px-6">
+      <section className="bg-dark py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {galleryItems.map((item, idx) => (
@@ -40,7 +40,7 @@ export default function GaleriPage() {
                 type="button"
                 onClick={() => openLightbox(idx)}
                 id={`gallery-item-${item.id}`}
-                className="relative aspect-square overflow-hidden group bg-navy-700/5 focus-visible:outline-2 focus-visible:outline-bronze-500"
+                className="relative aspect-square overflow-hidden group bg-stone/5 focus-visible:outline-2 focus-visible:outline-bronze-400"
                 aria-label={`Fotoğrafı büyüt: ${item.alt}`}
               >
                 <Image
@@ -50,10 +50,10 @@ export default function GaleriPage() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-navy-700/0 group-hover:bg-navy-700/40 transition-colors flex items-end p-3">
+                <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/40 transition-colors flex items-end p-3">
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity">
                     <p className="text-white font-oswald font-bold text-sm uppercase tracking-wide">{item.event}</p>
-                    <p className="text-bronze-300 text-xs">{new Date(item.date).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })}</p>
+                    <p className="text-bronze-400 text-xs">{new Date(item.date).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })}</p>
                   </div>
                 </div>
               </button>
@@ -113,8 +113,8 @@ export default function GaleriPage() {
 
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center">
             <p className="text-white font-oswald text-lg uppercase tracking-wide">{current.event}</p>
-            <p className="text-bronze-300 text-sm">{new Date(current.date).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })}</p>
-            <p className="text-white/40 text-xs mt-1">{lightbox + 1} / {galleryItems.length}</p>
+            <p className="text-bronze-400 text-sm">{new Date(current.date).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })}</p>
+            <p className="text-muted text-xs mt-1">{lightbox + 1} / {galleryItems.length}</p>
           </div>
         </div>
       )}

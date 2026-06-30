@@ -39,7 +39,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group" aria-label="Troya Run Club - Ana Sayfa">
-          <div className="relative w-10 h-10 rounded-full overflow-hidden border border-bronze-500 shrink-0 group-hover:scale-110 transition-transform">
+          <div className="relative w-10 h-10 rounded-full overflow-hidden border border-bronze-400 shrink-0 group-hover:scale-110 transition-transform">
             <Image
               src="/logo.jpg"
               alt="Troya Run Club Logo"
@@ -48,7 +48,7 @@ export default function Navbar() {
               sizes="40px"
             />
           </div>
-          <span className="hidden sm:block font-oswald font-bold text-xl tracking-[0.2em] uppercase text-white group-hover:text-bronze-300 transition-colors">
+          <span className="hidden sm:block font-oswald font-bold text-xl tracking-[0.2em] uppercase text-white group-hover:text-bronze-400 transition-colors">
             Troya Run Club
           </span>
         </Link>
@@ -60,7 +60,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-oswald font-semibold text-sm tracking-[0.2em] uppercase bg-bronze-500 text-white px-5 py-2 hover:bg-bronze-400 transition-colors"
+                className="font-oswald font-semibold text-sm tracking-[0.2em] uppercase bg-bronze-500 text-white px-5 py-2 hover:bg-bronze-600 transition-colors"
               >
                 {link.label}
               </Link>
@@ -68,7 +68,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-oswald font-semibold text-sm tracking-[0.2em] uppercase text-white/80 hover:text-bronze-300 transition-colors"
+                className="font-oswald font-semibold text-sm tracking-[0.2em] uppercase text-white/80 hover:text-bronze-400 transition-colors"
               >
                 {link.label}
               </Link>
@@ -98,7 +98,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="font-oswald font-semibold text-sm tracking-[0.2em] uppercase text-white/80 hover:text-bronze-300 py-3 border-b border-white/10 transition-colors"
+              className="font-oswald font-semibold text-sm tracking-[0.2em] uppercase text-white/80 hover:text-bronze-400 py-3 border-b border-white/10 transition-colors"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
