@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { products } from "@/data/products";
+import { client } from "@/sanity/client";
+import { urlForImage } from "@/sanity/image";
 
 export const metadata: Metadata = {
   title: "Mağaza",
   description: "Troya Run Club koleksiyonu — premium koşu kıyafetleri ve aksesuarlar.",
 };
 
-export default function MagazaPage() {
+export const revalidate = 60;
+
+export default async function MagazaPage() {
+  const products = await client.fetch(`*[_type == "urun"] | order(_createdAt desc)`);
+
   return (
     <>
       <div className="bg-dark pt-32 pb-16 px-6 relative overflow-hidden">
@@ -26,21 +31,23 @@ export default function MagazaPage() {
       <section className="bg-dark py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => (
+            {products.map((product: any) => (
               <Link
-                key={product.slug}
-                href={`/magaza/${product.slug}`}
-                id={`product-${product.slug}`}
+                key={product._id}
+                href={`/magaza/${product._id}`}
+                id={`product-${product._id}`}
                 className="group bg-stone border border-white/10 hover:border-bronze-400 hover:shadow-lg transition-all"
               >
                 <div className="relative aspect-square bg-stone overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-contain group-hover:scale-105 transition-transform duration-500 p-2"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
+                  {product.image && (
+                    <Image
+                      src={urlForImage(product.image)?.url() as string}
+                      alt={product.name}
+                      fill
+                      className="object-contain group-hover:scale-105 transition-transform duration-500 p-2"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  )}
                   {product.salePrice && (
                     <div className="absolute top-3 left-3 bg-bronze-500 text-white font-oswald font-bold text-xs tracking-[0.1em] uppercase px-2 py-1">
                       İNDİRİM
@@ -48,7 +55,6 @@ export default function MagazaPage() {
                   )}
                 </div>
                 <div className="p-5">
-                  <p className="text-bronze-400 text-[10px] tracking-[0.3em] uppercase font-semibold mb-1">{product.category}</p>
                   <h3 className="font-oswald font-bold text-xl uppercase tracking-tight text-cream group-hover:text-bronze-400 transition-colors">
                     {product.name}
                   </h3>

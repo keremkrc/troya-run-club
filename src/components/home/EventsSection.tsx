@@ -1,20 +1,20 @@
 import Link from "next/link";
 import { MapPin, Clock, Users } from "lucide-react";
-import { events } from "@/data/events";
+import { client } from "@/sanity/client";
 
 function formatDate(dateStr: string) {
+  if (!dateStr) return '';
   const date = new Date(dateStr);
   return date.toLocaleDateString("tr-TR", { day: "2-digit", month: "short" });
 }
 
 const typeBadge: Record<string, { label: string; className: string }> = {
-  haftalık: { label: "HAFTALIK", className: "bg-dark text-bronze-400" },
-  özel: { label: "ÖZEL", className: "bg-bronze-500 text-white" },
-  yarış: { label: "YARIŞ", className: "bg-amber-500 text-navy-900" },
+  haftalik: { label: "HAFTALIK", className: "bg-dark text-bronze-400" },
+  ozel: { label: "ÖZEL", className: "bg-bronze-500 text-white" },
 };
 
-export default function EventsSection() {
-  const upcomingEvents = events.filter((e) => !e.isPast).slice(0, 4);
+export default async function EventsSection() {
+  const upcomingEvents = await client.fetch(`*[_type == "etkinlik"] | order(date asc)[0...4]`);
 
   return (
     <section id="etkinlikler" className="bg-stone py-20 px-6">
@@ -35,12 +35,11 @@ export default function EventsSection() {
         </div>
 
         <div className="border-t border-white/10">
-          {upcomingEvents.map((event, idx) => {
-            const badge = typeBadge[event.type];
-            const isFull = event.participants >= event.maxParticipants;
+          {upcomingEvents?.map((event: any, idx: number) => {
+            const badge = event.category ? typeBadge[event.category] : null;
             return (
               <div
-                key={event.id}
+                key={event._id}
                 className={`flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-white/10 gap-4 group -mx-6 px-6 transition-colors cursor-pointer ${
                   idx === 0 ? "bg-bronze-500/5 hover:bg-bronze-500/10" : "hover:bg-white/5"
                 }`}
@@ -61,19 +60,24 @@ export default function EventsSection() {
                       )}
                     </div>
                     <div className="flex items-center gap-4 text-sm text-muted flex-wrap">
-                      <span className="flex items-center gap-1.5">
-                        <MapPin size={12} className="text-bronze-400" />
-                        {event.location}
-                      </span>
-                      <span className="flex items-center gap-1.5">
-                        <Clock size={12} className="text-bronze-400" />
-                        {event.time}
-                      </span>
-                      <span className="flex items-center gap-1.5">
-                        <Users size={12} className="text-bronze-400" />
-                        {event.participants}
-                        <span className="text-cream/40">/ {event.maxParticipants}</span>
-                      </span>
+                      {event.location && (
+                        <span className="flex items-center gap-1.5">
+                          <MapPin size={12} className="text-bronze-400" />
+                          {event.location}
+                        </span>
+                      )}
+                      {event.time && (
+                        <span className="flex items-center gap-1.5">
+                          <Clock size={12} className="text-bronze-400" />
+                          {event.time}
+                        </span>
+                      )}
+                      {event.capacity && (
+                        <span className="flex items-center gap-1.5">
+                          <Users size={12} className="text-bronze-400" />
+                          Kapasite: {event.capacity}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -81,11 +85,10 @@ export default function EventsSection() {
                 <div className="flex items-center gap-4 ml-[88px] md:ml-0">
                   <button
                     type="button"
-                    disabled={isFull}
-                    id={`event-join-${event.id}`}
-                    className="font-oswald font-semibold text-xs tracking-[0.25em] uppercase px-6 py-2.5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-bronze-500 text-white hover:bg-bronze-600"
+                    id={`event-join-${event._id}`}
+                    className="font-oswald font-semibold text-xs tracking-[0.25em] uppercase px-6 py-2.5 transition-colors bg-bronze-500 text-white hover:bg-bronze-600"
                   >
-                    {isFull ? "DOLU" : "KATIL"}
+                    KATIL
                   </button>
                 </div>
               </div>

@@ -1,16 +1,22 @@
 import type {StructureResolver} from 'sanity/structure'
 
-// https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
   S.list()
     .title('İçerik Yönetimi')
     .items([
-      S.documentTypeListItem('hero').title('Ana Sayfa Hero'),
-      S.documentTypeListItem('event').title('Etkinlikler'),
-      S.documentTypeListItem('product').title('Mağaza Ürünleri'),
-      S.documentTypeListItem('gallery').title('Galeri Fotoğrafları'),
-      S.documentTypeListItem('about').title('Hakkımızda Sayfası'),
+      // Singleton for Settings
+      S.listItem()
+        .title('Genel Ayarlar')
+        .child(
+          S.document()
+            .schemaType('ayarlar')
+            .documentId('ayarlar')
+        ),
+      S.divider(),
+      S.documentTypeListItem('etkinlik').title('Etkinlikler'),
+      S.documentTypeListItem('urun').title('Ürünler'),
+      S.documentTypeListItem('galeri').title('Galeri Fotoğrafları'),
       ...S.documentTypeListItems().filter(
-        (listItem) => !['hero', 'event', 'product', 'gallery', 'about'].includes(listItem.getId() as string)
+        (listItem) => !['ayarlar', 'etkinlik', 'urun', 'galeri'].includes(listItem.getId() as string)
       ),
     ])

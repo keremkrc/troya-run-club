@@ -4,11 +4,11 @@ import { client } from '@/sanity/client'
 import { urlForImage } from '@/sanity/image'
 
 export default async function HeroSection() {
-  const heroData = await client.fetch(`*[_type == "hero"][0]`)
+  const ayarlar = await client.fetch(`*[_type == "ayarlar"][0]`)
 
-  const title = heroData?.title || 'TROYA RUN CLUB'
-  const subtitle = heroData?.subtitle || 'Çanakkale\'nin efsanevi topraklarında koşuyoruz. Rekabet değil tutku, bireysel başarı değil aile — birlikte daha uzağa.'
-  const bgImageUrl = heroData?.image ? urlForImage(heroData.image)?.url() : '/hero-background.png'
+  const title = ayarlar?.heroTitle || 'TROYA RUN CLUB'
+  const subtitle = ayarlar?.heroSubtitle || 'Çanakkale\'nin efsanevi topraklarında koşuyoruz. Rekabet değil tutku, bireysel başarı değil aile — birlikte daha uzağa.'
+  const bgImageUrl = ayarlar?.heroImage ? urlForImage(ayarlar.heroImage)?.url() : '/hero-background.png'
 
   return (
     <div className="relative min-h-[580px] overflow-hidden bg-dark flex items-end">

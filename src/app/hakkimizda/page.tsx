@@ -33,7 +33,11 @@ const values = [
   },
 ];
 
-export default function HakkimizdaPage() {
+import { client } from "@/sanity/client";
+
+export default async function HakkimizdaPage() {
+  const ayarlar = await client.fetch(`*[_type == "ayarlar"][0]`);
+
   return (
     <>
       {/* Page Header */}
@@ -61,16 +65,8 @@ export default function HakkimizdaPage() {
               <br />
               <span className="text-bronze-400">BÜYÜK HAYALLER KURDUK.</span>
             </h2>
-            <div className="space-y-4 text-muted leading-relaxed">
-              <p>
-                2023 yılında birkaç arkadaşın Çanakkale sahil yolundaki sabah koşusuyla başlayan bu yolculuk, bugün 350&apos;yi aşkın üyesiyle büyüyen bir topluluğa dönüştü.
-              </p>
-              <p>
-                Truva&apos;nın efsanevi dayanıklılığından ilham alarak kurduğumuz Troya Run Club; yaş, tempo veya deneyim ayrımı gözetmeksizin herkese koşma sevinci yaşatmayı hedefliyor.
-              </p>
-              <p>
-                Her çarşamba akşamı ve cumartesi sabahı, Çanakkale&apos;nin tarihi sokaklarında, kıyı yollarında ve antik rotalarda bir araya geliyor; birlikte koşuyor, birlikte büyüyoruz.
-              </p>
+            <div className="space-y-4 text-muted leading-relaxed whitespace-pre-wrap">
+              {ayarlar?.aboutText || "Hakkımızda metni henüz girilmedi."}
             </div>
           </div>
           <div className="relative h-80 md:h-full min-h-[400px] rounded-sm overflow-hidden">
