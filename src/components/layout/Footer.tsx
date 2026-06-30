@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Share2, Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
@@ -30,9 +31,15 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <span className="w-10 h-10 rounded-full bg-bronze-500 flex items-center justify-center text-white font-bold text-sm shrink-0">
-                🏛️
-              </span>
+              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-bronze-500 shrink-0">
+                <Image
+                  src="/logo.jpg"
+                  alt="Troya Run Club Logo"
+                  fill
+                  className="object-cover"
+                  sizes="40px"
+                />
+              </div>
               <p className="font-oswald font-bold text-xl tracking-[0.2em] uppercase text-white">
                 Troya Run Club
               </p>

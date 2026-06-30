@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -36,9 +37,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group" aria-label="Troya Run Club - Ana Sayfa">
-          <span className="w-10 h-10 rounded-full bg-bronze-500 flex items-center justify-center text-white font-bold text-sm shrink-0 group-hover:scale-110 transition-transform">
-            🏛️
-          </span>
+          <div className="relative w-10 h-10 rounded-full overflow-hidden border border-bronze-500 shrink-0 group-hover:scale-110 transition-transform">
+            <Image
+              src="/logo.jpg"
+              alt="Troya Run Club Logo"
+              fill
+              className="object-cover"
+              sizes="40px"
+            />
+          </div>
           <span className="hidden sm:block font-oswald font-bold text-xl tracking-[0.2em] uppercase text-white group-hover:text-bronze-300 transition-colors">
             Troya Run Club
           </span>
