@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/hakkimizda", label: "Hakkımızda" },
   { href: "/etkinlikler", label: "Etkinlikler" },
   { href: "/galeri", label: "Galeri" },
+  { href: "/basarilar", label: "Başarılar" },
   { href: "/leaderboard", label: "Liderlik" },
   { href: "/magaza", label: "Mağaza" },
   { href: "/#sss", label: "SSS" },
