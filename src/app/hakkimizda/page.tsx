@@ -71,7 +71,7 @@ export default async function HakkimizdaPage() {
           </div>
           <div className="relative h-80 md:h-full min-h-[400px] rounded-sm overflow-hidden">
             <Image
-              src="/about-team.jpg"
+              src="/hero-background.jpg"
               alt="Troya Run Club ekip fotoğrafı"
               fill
               className="object-cover"

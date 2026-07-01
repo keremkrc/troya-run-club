@@ -34,34 +34,41 @@ export default function GaleriClient({ galleryItems }: { galleryItems: any[] }) 
       <section className="bg-dark py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {galleryItems.map((item, idx) => (
-              <button
-                key={item._id}
-                type="button"
-                onClick={() => openLightbox(idx)}
-                id={`gallery-item-${item._id}`}
-                className="relative aspect-square overflow-hidden group bg-stone/5 focus-visible:outline-2 focus-visible:outline-bronze-400"
-                aria-label={`Fotoğrafı büyüt: ${item.description}`}
-              >
-                {item.image && (
-                  <Image
-                    src={urlForImage(item.image)?.url() as string}
-                    alt={item.description || "Galeri Fotoğrafı"}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  />
-                )}
-                <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/40 transition-colors flex items-end p-3">
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                    <p className="text-white font-oswald font-bold text-sm uppercase tracking-wide">{item.description}</p>
-                    {item.date && (
-                      <p className="text-bronze-400 text-xs">{new Date(item.date).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })}</p>
-                    )}
+            {galleryItems?.map((item, idx) => {
+              const imageUrl = item.image && item.image.asset ? urlForImage(item.image)?.url() : null;
+              return (
+                <button
+                  key={item._id}
+                  type="button"
+                  onClick={() => openLightbox(idx)}
+                  id={`gallery-item-${item._id}`}
+                  className="relative aspect-square overflow-hidden group bg-stone/5 focus-visible:outline-2 focus-visible:outline-bronze-400"
+                  aria-label={`Fotoğrafı büyüt: ${item.description || ""}`}
+                >
+                  {imageUrl ? (
+                    <Image
+                      src={imageUrl}
+                      alt={item.description || "Galeri Fotoğrafı"}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-stone/20 text-muted text-xs">
+                      Görsel Yüklenemedi
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/40 transition-colors flex items-end p-3">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                      <p className="text-white font-oswald font-bold text-sm uppercase tracking-wide">{item.description}</p>
+                      {item.date && (
+                        <p className="text-bronze-400 text-xs">{new Date(item.date).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })}</p>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </button>
-            ))}
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -97,15 +104,22 @@ export default function GaleriClient({ galleryItems }: { galleryItems: any[] }) 
             className="relative max-w-4xl max-h-[80vh] w-full h-full"
             onClick={(e) => e.stopPropagation()}
           >
-            {current.image && (
-              <Image
-                src={urlForImage(current.image)?.url() as string}
-                alt={current.description || "Galeri Fotoğrafı"}
-                fill
-                className="object-contain"
-                sizes="(max-width: 1024px) 100vw, 80vw"
-              />
-            )}
+            {(() => {
+              const currentImageUrl = current.image && current.image.asset ? urlForImage(current.image)?.url() : null;
+              return currentImageUrl ? (
+                <Image
+                  src={currentImageUrl}
+                  alt={current.description || "Galeri Fotoğrafı"}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1024px) 100vw, 80vw"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center text-white text-sm">
+                  Görsel Yüklenemedi
+                </div>
+              );
+            })()}
           </div>
 
           <button
