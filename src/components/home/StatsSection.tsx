@@ -1,26 +1,23 @@
-import { Users, Calendar, Trophy } from "lucide-react";
+import { Users, MapPin, Landmark } from "lucide-react";
 
 const stats = [
   {
     icon: Users,
-    value: "350+",
+    value: "120+",
     label: "Aktif Üye",
     description: "Her seviyeden koşucu büyük ailemizin parçası",
-    color: "text-bronze-400",
   },
   {
-    icon: Calendar,
+    icon: MapPin,
     value: "2×",
     label: "Haftalık Buluşma",
     description: "Çarşamba akşamı ve Cumartesi sabahı buluşuyoruz",
-    color: "text-bronze-400",
   },
   {
-    icon: Trophy,
+    icon: Landmark,
     value: "2023",
     label: "Kuruluş Yılı",
     description: "Çanakkale'nin koşucu topluluğu olarak büyüyoruz",
-    color: "text-bronze-400",
   },
 ];
 
@@ -37,16 +34,17 @@ export default function StatsSection() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat) => {
             const Icon = stat.icon;
             return (
               <div
                 key={stat.label}
-                className="bg-mid p-10 flex flex-col gap-4 group hover:bg-dark transition-colors duration-300"
+                className="bg-stone/20 border border-white/5 p-10 flex flex-col gap-4 group hover:bg-dark hover:border-bronze-500/30 hover:shadow-[0_0_30px_rgba(232,101,10,0.15)] transition-all duration-500 rounded-2xl"
               >
-                <div className="w-12 h-12 rounded-full bg-bronze-500/10 flex items-center justify-center group-hover:bg-bronze-500/20 transition-colors">
-                  <Icon size={22} className="text-bronze-400" />
+                {/* Logo colors: Navy background (#0D1B3E / navy-700 or #040A14 / navy-900) + Orange/Bronze text/icon/border */}
+                <div className="w-12 h-12 rounded-xl bg-navy-900 border border-bronze-500/20 flex items-center justify-center group-hover:bg-bronze-500 group-hover:text-navy-950 group-hover:border-bronze-500 transition-all duration-300">
+                  <Icon size={22} className="text-bronze-400 group-hover:text-navy-950 transition-colors" />
                 </div>
                 <div>
                   <span className="text-cream/40 text-[10px] tracking-[0.4em] uppercase font-semibold group-hover:text-muted transition-colors">
@@ -56,7 +54,7 @@ export default function StatsSection() {
                     {stat.value}
                   </h3>
                 </div>
-                <p className="text-muted text-sm leading-relaxed flex-1 group-hover:text-cream/60 transition-colors">
+                <p className="text-muted text-sm leading-relaxed flex-1 group-hover:text-cream/70 transition-colors">
                   {stat.description}
                 </p>
               </div>

@@ -34,7 +34,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-navy-700 shadow-[0_4px_30px_rgba(13,27,62,0.4)] py-3"
+          ? "bg-navy-700/80 backdrop-blur-md shadow-[0_4px_30px_rgba(13,27,62,0.4)] py-3"
           : "bg-transparent py-5"
       }`}
       aria-label="Ana navigasyon"

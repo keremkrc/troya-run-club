@@ -4,6 +4,7 @@ import StatsSection from "@/components/home/StatsSection";
 import EventsSection from "@/components/home/EventsSection";
 import ShopShowcase from "@/components/home/ShopShowcase";
 import FaqSection from "@/components/home/FaqSection";
+import ScrollReveal from "@/components/common/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Ana Sayfa",
@@ -15,10 +16,18 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <StatsSection />
-      <EventsSection />
-      <ShopShowcase />
-      <FaqSection />
+      <ScrollReveal>
+        <StatsSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <EventsSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <ShopShowcase />
+      </ScrollReveal>
+      <ScrollReveal>
+        <FaqSection />
+      </ScrollReveal>
     </>
   );
 }
