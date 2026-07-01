@@ -14,17 +14,66 @@ const experienceLevels = [
 
 export default function KayitPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({
     name: "", email: "", phone: "", level: "", message: "", kvkk: false,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    
+    if (!form.name || !form.email || !form.level || !form.kvkk) {
+      setError("Lütfen tüm zorunlu alanları doldurun ve KVKK onayını işaretleyin.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError(null);
+
+    const formspreeKey = process.env.NEXT_PUBLIC_FORMSPREE_KEY;
+
+    if (!formspreeKey) {
+      // Fallback for development if key is not set: simulate successful submission
+      console.log("Formspree key not set in .env.local, simulating success:", form);
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSubmitted(true);
+      }, 1000);
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${formspreeKey}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          "Ad Soyad": form.name,
+          "E-posta": form.email,
+          "Telefon": form.phone,
+          "Deneyim Seviyesi": form.level,
+          "Mesaj": form.message,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        setError("Başvuru gönderilirken bir sorun oluştu. Lütfen daha sonra tekrar deneyin.");
+      }
+    } catch (err) {
+      setError("Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edin.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
+    setError(null);
     setForm((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
@@ -165,13 +214,18 @@ export default function KayitPage() {
                   </label>
                 </div>
 
+                {error && (
+                  <p className="text-red-500 text-xs font-semibold mb-4">{error}</p>
+                )}
+
                 <button
                   type="submit"
                   id="submit-registration"
-                  className="w-full flex items-center justify-center gap-3 bg-bronze-500 text-white font-oswald font-bold text-sm tracking-[0.25em] uppercase py-4 hover:bg-bronze-600 transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full flex items-center justify-center gap-3 bg-bronze-500 text-white font-oswald font-bold text-sm tracking-[0.25em] uppercase py-4 hover:bg-bronze-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send size={16} />
-                  BAŞVURUYU GÖNDER
+                  {isSubmitting ? "GÖNDERİLİYOR..." : "BAŞVURUYU GÖNDER"}
                 </button>
               </div>
             </form>

@@ -1,24 +1,33 @@
 import { Users, MessageCircle } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 
+const WHATSAPP_URL =
+  "https://chat.whatsapp.com/IHk2lr906avDAPVAJ7z3c7?s=cl&p=i&mlu=2";
+const INSTAGRAM_URL = "https://instagram.com/troyaruncanakkale";
+
 const stats = [
   {
     icon: Users,
     value: "60+",
     label: "Aktif Üye",
     description: "Her seviyeden koşucu ile her antrenmanda omuz omuza.",
+    href: null,
   },
   {
     icon: MessageCircle,
     value: "500+",
     label: "WhatsApp Üyesi",
     description: "Haberleşme, etkinlik duyuruları ve koşu sohbetleri için büyük topluluk.",
+    href: WHATSAPP_URL,
+    cta: "Gruba Katıl →",
   },
   {
     icon: FaInstagram,
     value: "5.000+",
     label: "Instagram Takipçisi",
     description: "Efsanevi koşu anlarımızı paylaştığımız dinamik sosyal medya ailemiz.",
+    href: INSTAGRAM_URL,
+    cta: "Takip Et →",
   },
 ];
 
@@ -38,13 +47,20 @@ export default function StatsSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat) => {
             const Icon = stat.icon;
+            const Wrapper = stat.href ? "a" : "div";
+            const linkProps = stat.href
+              ? { href: stat.href, target: "_blank" as const, rel: "noopener noreferrer" }
+              : {};
+
             return (
-              <div
+              <Wrapper
                 key={stat.label}
-                className="bg-stone/20 border border-white/5 p-10 flex flex-col gap-4 group hover:bg-dark hover:border-bronze-500/30 hover:shadow-[0_0_30px_rgba(232,101,10,0.15)] transition-all duration-500 rounded-2xl"
+                {...linkProps}
+                className={`bg-stone/20 border border-white/5 p-10 flex flex-col gap-4 group hover:bg-dark hover:border-bronze-500/30 hover:shadow-[0_0_30px_rgba(232,101,10,0.15)] transition-all duration-500 rounded-2xl ${
+                  stat.href ? "cursor-pointer" : ""
+                }`}
               >
-                {/* Logo colors: Navy background (#0D1B3E / navy-700 or #040A14 / navy-900) + Orange/Bronze text/icon/border */}
-                <div className="w-12 h-12 rounded-xl bg-navy-900 border border-bronze-500/20 flex items-center justify-center group-hover:bg-bronze-500 group-hover:text-navy-950 group-hover:border-bronze-500 transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-navy-900 border border-bronze-500/20 flex items-center justify-center group-hover:bg-bronze-500 group-hover:border-bronze-500 transition-all duration-300">
                   <Icon size={22} className="text-bronze-400 group-hover:text-navy-950 transition-colors" />
                 </div>
                 <div>
@@ -58,7 +74,12 @@ export default function StatsSection() {
                 <p className="text-muted text-sm leading-relaxed flex-1 group-hover:text-cream/70 transition-colors">
                   {stat.description}
                 </p>
-              </div>
+                {stat.cta && (
+                  <span className="text-bronze-400 text-xs font-semibold tracking-[0.2em] uppercase group-hover:text-bronze-300 transition-colors">
+                    {stat.cta}
+                  </span>
+                )}
+              </Wrapper>
             );
           })}
         </div>

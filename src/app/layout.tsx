@@ -3,6 +3,7 @@ import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import WhatsAppFloat from "@/components/common/WhatsAppFloat";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
       <body className="font-inter bg-dark text-cream antialiased">
         <Navbar />
         <main>{children}</main>
+        <WhatsAppFloat />
         <Footer />
       </body>
     </html>

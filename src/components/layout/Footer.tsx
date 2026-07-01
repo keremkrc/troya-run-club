@@ -3,10 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin } from "lucide-react";
-import { FaInstagram } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { QRCodeSVG } from "qrcode.react";
 
 const INSTAGRAM_URL = "https://instagram.com/troyaruncanakkale";
+const WHATSAPP_URL = "https://chat.whatsapp.com/IHk2lr906avDAPVAJ7z3c7?s=cl&p=i&mlu=2";
 
 const footerLinks = {
   kulüp: [
@@ -108,6 +109,17 @@ export default function Footer() {
               >
                 <FaInstagram size={16} className="text-bronze-400 group-hover:scale-110 transition-transform" />
                 <span>@troyaruncanakkale</span>
+              </a>
+
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-muted text-sm hover:text-bronze-400 transition-colors mb-4 group"
+                aria-label="WhatsApp grubumuz"
+              >
+                <FaWhatsapp size={16} className="text-bronze-400 group-hover:scale-110 transition-transform" />
+                <span>WhatsApp Grubuna Katıl</span>
               </a>
 
               {/* QR Code */}
