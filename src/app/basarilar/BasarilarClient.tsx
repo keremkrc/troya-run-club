@@ -104,13 +104,13 @@ export default function BasarilarClient({ basarilar }: { basarilar: Basari[] }) 
                 className="group text-left bg-mid/60 border border-white/10 rounded-2xl overflow-hidden hover:border-bronze-500/40 hover:shadow-[0_0_40px_rgba(232,101,10,0.15)] transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze-400"
               >
                 {/* Image */}
-                <div className="relative h-48 bg-navy-900 overflow-hidden">
+                <div className="relative h-[250px] w-full bg-navy-900 overflow-hidden">
                   {imgUrl ? (
                     <Image
                       src={imgUrl}
                       alt={b.etkinlikAdi}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   ) : (
