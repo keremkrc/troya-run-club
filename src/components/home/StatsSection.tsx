@@ -9,9 +9,9 @@ const stats = [
   },
   {
     icon: MapPin,
-    value: "2×",
-    label: "Haftalık Buluşma",
-    description: "Çarşamba akşamı ve Cumartesi sabahı buluşuyoruz",
+    value: "3×",
+    label: "Haftalık Antrenman",
+    description: "Pazartesi, Çarşamba ve Cuma akşamı saat 20:00'de buluşuyoruz",
   },
   {
     icon: Landmark,

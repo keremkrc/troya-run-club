@@ -66,8 +66,8 @@ export default async function HeroSection() {
           <Link href="/kayit" className="bg-bronze-500 hover:bg-bronze-600 text-white text-[11px] font-semibold tracking-[2px] uppercase px-8 py-3.5 transition-colors">
             Gruba Katıl
           </Link>
-          <Link href="/etkinlikler" className="text-cream text-[11px] font-semibold tracking-[2px] uppercase px-0 py-3.5 border-b border-cream/50 hover:text-bronze-400 transition-colors">
-            Etkinliklere Bak →
+          <Link href="/#antrenmanlar" className="text-cream text-[11px] font-semibold tracking-[2px] uppercase px-0 py-3.5 border-b border-cream/50 hover:text-bronze-400 transition-colors">
+            Programı Gör →
           </Link>
         </div>
       </div>

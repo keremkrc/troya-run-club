@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
 import StatsSection from "@/components/home/StatsSection";
+import TrainingSection from "@/components/home/TrainingSection";
 import EventsSection from "@/components/home/EventsSection";
 import ShopShowcase from "@/components/home/ShopShowcase";
 import FaqSection from "@/components/home/FaqSection";
@@ -18,6 +19,9 @@ export default function HomePage() {
       <HeroSection />
       <ScrollReveal>
         <StatsSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <TrainingSection />
       </ScrollReveal>
       <ScrollReveal>
         <EventsSection />
