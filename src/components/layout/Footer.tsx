@@ -1,6 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { Share2, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
+import { FaInstagram } from "react-icons/fa";
+import { QRCodeSVG } from "qrcode.react";
+
+const INSTAGRAM_URL = "https://instagram.com/troyaruncanakkale";
 
 const footerLinks = {
   kulüp: [
@@ -31,13 +37,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-bronze-400 shrink-0">
+              <div className="relative w-12 h-12 shrink-0">
                 <Image
-                  src="/logo.jpg"
+                  src="/troya_run_logo_transparent.png"
                   alt="Troya Run Club Logo"
                   fill
-                  className="object-cover"
-                  sizes="40px"
+                  className="object-contain"
+                  sizes="48px"
                 />
               </div>
               <p className="font-oswald font-bold text-xl tracking-[0.2em] uppercase text-white">
@@ -90,41 +96,52 @@ export default function Footer() {
           {/* Social & Legal */}
           <div>
             <p className="text-bronze-400 text-[10px] tracking-[0.35em] uppercase font-semibold mb-5">BAĞLANTI</p>
-            <ul className="space-y-3 mb-8">
-              <li>
-                <a
-                  href="https://instagram.com/troyarunclub"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-muted text-sm hover:text-bronze-400 transition-colors"
-                >
-                  <svg
-                    className="w-3.5 h-3.5 text-bronze-400"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                  </svg>
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://strava.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted text-sm hover:text-bronze-400 transition-colors"
-                >
-                  Strava
-                </a>
-              </li>
-            </ul>
+
+            {/* Instagram link + QR */}
+            <div className="mb-6">
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-muted text-sm hover:text-bronze-400 transition-colors mb-4 group"
+                aria-label="Instagram sayfamız"
+              >
+                <FaInstagram size={16} className="text-bronze-400 group-hover:scale-110 transition-transform" />
+                <span>@troyaruncanakkale</span>
+              </a>
+
+              {/* QR Code */}
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Instagram'a git"
+                aria-label="Instagram QR Kodu"
+                className="inline-block group"
+              >
+                <div className="p-2 bg-white rounded-lg inline-block transition-transform group-hover:scale-105">
+                  <QRCodeSVG
+                    value={INSTAGRAM_URL}
+                    size={96}
+                    bgColor="#ffffff"
+                    fgColor="#0E0E0E"
+                    level="M"
+                  />
+                </div>
+                <p className="text-muted text-[10px] tracking-wide mt-2 text-center">
+                  Tara &amp; Takip Et
+                </p>
+              </a>
+            </div>
+
+            <a
+              href="https://strava.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted text-sm hover:text-bronze-400 transition-colors block mb-8"
+            >
+              Strava
+            </a>
 
             <p className="text-bronze-400 text-[10px] tracking-[0.35em] uppercase font-semibold mb-5">YASAL</p>
             <ul className="space-y-3">

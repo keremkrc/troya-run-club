@@ -11,7 +11,7 @@ export default async function HeroSection() {
   const bgImageUrl = ayarlar?.heroImage ? urlForImage(ayarlar.heroImage)?.url() : '/hero-background.png'
 
   return (
-    <div className="relative min-h-[580px] overflow-hidden bg-dark flex items-end">
+    <div className="relative min-h-[580px] overflow-hidden bg-dark flex items-center justify-center">
       {/* Background Image & Overlays */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-dark z-0" />
@@ -23,14 +23,10 @@ export default async function HeroSection() {
           className="object-cover opacity-50 z-10"
         />
         <div className="absolute inset-0 z-20 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
-        <div className="absolute inset-0 z-20 bg-gradient-to-r from-dark via-dark/80 to-transparent" />
+        <div className="absolute inset-0 z-20 bg-dark/30" />
       </div>
 
-      <div className="absolute right-10 top-10 pointer-events-none z-20 hidden lg:block">
-        <Image src="/logo-main.png" alt="" width={300} height={300} className="opacity-10 object-contain" />
-      </div>
-
-      <div className="relative z-30 px-6 md:px-12 pb-16 max-w-3xl">
+      <div className="relative z-30 px-6 md:px-12 pb-16 pt-32 max-w-4xl w-full text-center mx-auto">
         <div className="inline-block text-[11px] font-semibold tracking-[3px] uppercase text-bronze-400 border border-bronze-400/35 px-4 py-1.5 mb-6">
           Çanakkale Run Club — Kur. 5 Mayıs 2025
         </div>
@@ -50,11 +46,11 @@ export default async function HeroSection() {
           })}
         </h1>
 
-        <p className="text-[15px] font-light text-cream/75 mt-5 leading-[1.7] max-w-md">
+        <p className="text-[15px] font-light text-cream/75 mt-5 leading-[1.7] max-w-xl mx-auto">
           {subtitle}
         </p>
 
-        <div className="flex gap-4 mt-8 items-center">
+        <div className="flex gap-4 mt-8 items-center justify-center">
           <Link href="/kayit" className="bg-bronze-500 hover:bg-bronze-600 text-white text-[11px] font-semibold tracking-[2px] uppercase px-8 py-3.5 transition-colors">
             Gruba Katıl
           </Link>
