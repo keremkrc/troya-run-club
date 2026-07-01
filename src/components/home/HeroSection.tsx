@@ -8,7 +8,7 @@ export default async function HeroSection() {
 
   const title = ayarlar?.heroTitle || 'TROYA RUN CLUB'
   const subtitle = ayarlar?.heroSubtitle || 'Çanakkale\'nin efsanevi topraklarında koşuyoruz. Rekabet değil tutku, bireysel başarı değil aile — birlikte daha uzağa.'
-  const bgImageUrl = ayarlar?.heroImage ? urlForImage(ayarlar.heroImage)?.url() : '/hero-background.png'
+  const bgImageUrl = ayarlar?.heroImage ? urlForImage(ayarlar.heroImage)?.url() : '/hero-background.jpg'
 
   return (
     <div className="relative min-h-[580px] overflow-hidden bg-dark flex items-center justify-center">
