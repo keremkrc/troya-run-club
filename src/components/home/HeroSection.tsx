@@ -37,7 +37,7 @@ export default async function HeroSection() {
           className="inline-block text-[11px] font-semibold tracking-[3px] uppercase text-bronze-400 border border-bronze-500 px-4 py-1.5 mb-6 animate-fade-up opacity-0"
           style={{ animationDelay: '0ms', animationFillMode: 'forwards' }}
         >
-          Troya Run Club — Kur. 5 Mayıs 2025
+          Troya Run Club — Kur. 05 Mayıs 2025
         </div>
 
         {/* Title — delay: 200ms */}

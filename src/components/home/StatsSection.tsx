@@ -1,23 +1,24 @@
-import { Users, MapPin, Landmark } from "lucide-react";
+import { Users, MessageCircle } from "lucide-react";
+import { FaInstagram } from "react-icons/fa";
 
 const stats = [
   {
     icon: Users,
-    value: "120+",
+    value: "60+",
     label: "Aktif Üye",
-    description: "Her seviyeden koşucu büyük ailemizin parçası",
+    description: "Her seviyeden koşucu ile her antrenmanda omuz omuza.",
   },
   {
-    icon: MapPin,
-    value: "3×",
-    label: "Haftalık Antrenman",
-    description: "Pazartesi, Çarşamba ve Cuma akşamı saat 20:00'de buluşuyoruz",
+    icon: MessageCircle,
+    value: "500+",
+    label: "WhatsApp Üyesi",
+    description: "Haberleşme, etkinlik duyuruları ve koşu sohbetleri için büyük topluluk.",
   },
   {
-    icon: Landmark,
-    value: "2023",
-    label: "Kuruluş Yılı",
-    description: "Çanakkale'nin koşucu topluluğu olarak büyüyoruz",
+    icon: FaInstagram,
+    value: "5.000+",
+    label: "Instagram Takipçisi",
+    description: "Efsanevi koşu anlarımızı paylaştığımız dinamik sosyal medya ailemiz.",
   },
 ];
 
